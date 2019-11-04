@@ -1,8 +1,6 @@
 ---
 # defaults file for ansible-role-emqx
 
----
-
 emqx_image_name: emqx/emqx
 emqx_image_tag: latest
 
