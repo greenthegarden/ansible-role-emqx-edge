@@ -1,0 +1,26 @@
+---
+# defaults file for ansible-role-emqx
+
+---
+
+emqx_image_name: emqx/emqx
+emqx_image_tag: latest
+
+emqx_dir_config: "{{ storage_base.path }}/config"
+
+emqx_service_name: emqx
+emqx_service_ports_http: 18083
+emqx_service_ports_mqtt: 1883
+emqx_service_ports_ssl: 8883
+emqx_service_ports_ws: 8083
+emqx_service_ports_wss: 8084
+emqx_service_ports_api: 8080
+emqx_service_ports: [
+  { label: http, value: "{{ emqx_service_ports_http }}" },
+  { label: mqtt, value: "{{ emqx_service_ports_mqtt }}" },
+  { label: ssl, value: "{{ emqx_service_ports_ssl }}" },
+  { label: ws, value: "{{ emqx_service_ports_ws }}" },
+  { label: wss, value: "{{ emqx_service_ports_wss }}" },
+  { label: api, value: "{{ emqx_service_ports_api }}" }
+]
+emqx_service_restart_policy: always
