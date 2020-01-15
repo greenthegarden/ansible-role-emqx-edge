@@ -1,26 +1,28 @@
 ---
-# defaults file for ansible-role-emqx
+# defaults file for ansible-role-emqx-edge
 
----
+emqx_edge_version: v4.0.0
 
-emqx_image_name: emqx/emqx
-emqx_image_tag: latest
+emqx_edge_deb: https://www.emqx.io/downloads/edge/{{emqx_edge_verion}}/emqx-edge-raspbian10-{{emqx_edge_verion}}_armhf.deb
+emqx_edge_zip: https://www.emqx.io/downloads/edge/{{emqx_edge_verion}}/emqx-edge-raspbian10-{{emqx_edge_verion}}.zip
+emqx_edge_docker: https://www.emqx.io/downloads/edge/{{emqx_edge_verion}}/emqx-edge-docker-{{emqx_edge_verion}}-alpine3.10-arm32v7.zip
 
-emqx_dir_config: "{{ storage_base.path }}/config"
+emqx_machine_image_tag_map:
+  armv7l: '-arm32v7'
+  x86_64: ''
 
-emqx_service_name: emqx
-emqx_service_ports_http: 18083
-emqx_service_ports_mqtt: 1883
-emqx_service_ports_ssl: 8883
-emqx_service_ports_ws: 8083
-emqx_service_ports_wss: 8084
-emqx_service_ports_api: 8080
-emqx_service_ports: [
-  { label: http, value: "{{ emqx_service_ports_http }}" },
-  { label: mqtt, value: "{{ emqx_service_ports_mqtt }}" },
-  { label: ssl, value: "{{ emqx_service_ports_ssl }}" },
-  { label: ws, value: "{{ emqx_service_ports_ws }}" },
-  { label: wss, value: "{{ emqx_service_ports_wss }}" },
-  { label: api, value: "{{ emqx_service_ports_api }}" }
-]
-emqx_service_restart_policy: always
+emqx:
+  image:
+    name: emqx/emqx-edge
+    tag: v3.2.2
+  service:
+    name: emqx
+    ports:
+      http: 8080 #management
+      mqtt: 1883
+      mqtts: 11883
+      ws: 8083
+      ssl: 8883
+      wss: 8084
+    restart:
+      policy: always

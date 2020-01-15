@@ -1,0 +1,36 @@
+---
+
+- name: set package name
+  set_fact:
+    pkg_name: "/tmp/emqx-edge-raspbian10-{{ emqx_edge_version }}.deb"
+
+- name: Download package
+  get_url:
+    url: "{{ emqx_edge_deb }}"
+    dest: "{{ pkg_name }}"
+
+# - name: Copy file
+#   become: yes
+#   copy:
+#     src: /tmp/{{ emqx_edge_deb }}
+#     dest: /tmp/emqx-edge-raspbian9.deb
+
+- name: Install package
+  become: yes
+  apt:
+    deb: "{{ pkg_name }}"
+
+- name: Start service
+  become: yes
+  systemd:
+    name: emqx.service
+    state: started
+    enabled: yes
+
+- name: "register {{ emqx.service.name }} service with the local consul agent"
+  consul:
+    service_name: "{{ emqx.service.name }}-{{ item.value }}"
+    service_port: "{{ item.value }}"
+    state: present
+  with_dict: "{{ emqx.service.ports }}"
+  when: service_consul_running
