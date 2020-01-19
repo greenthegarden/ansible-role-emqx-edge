@@ -14,7 +14,7 @@ emqx_machine_image_tag_map:
 emqx:
   image:
     name: emqx/emqx-edge
-    tag: v3.2.2
+    tag: v4.0.0
   service:
     name: emqx
     ports:

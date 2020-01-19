@@ -1,5 +1,2 @@
 ---
 # tasks file for ansible-role-emqx
-
-- name: Run container
-  import_tasks: container.yml
