@@ -1,11 +1,11 @@
 ---
 # defaults file for ansible-role-emqx-edge
 
-emqx_edge_version: v4.0.0
+emqx_edge_version: v4.0.1
 
-emqx_edge_deb: https://www.emqx.io/downloads/edge/{{emqx_edge_verion}}/emqx-edge-raspbian10-{{emqx_edge_verion}}_armhf.deb
-emqx_edge_zip: https://www.emqx.io/downloads/edge/{{emqx_edge_verion}}/emqx-edge-raspbian10-{{emqx_edge_verion}}.zip
-emqx_edge_docker: https://www.emqx.io/downloads/edge/{{emqx_edge_verion}}/emqx-edge-docker-{{emqx_edge_verion}}-alpine3.10-arm32v7.zip
+emqx_edge_deb: https://www.emqx.io/downloads/edge/{{emqx_edge_version}}/emqx-edge-raspbian10-{{emqx_edge_version}}_armhf.deb
+emqx_edge_zip: https://www.emqx.io/downloads/edge/{{emqx_edge_version}}/emqx-edge-raspbian10-{{emqx_edge_version}}.zip
+emqx_edge_docker: https://www.emqx.io/downloads/edge/{{emqx_edge_version}}/emqx-edge-docker-{{emqx_edge_version}}-alpine3.10-arm32v7.zip
 
 emqx_machine_image_tag_map:
   armv7l: '-arm32v7'
